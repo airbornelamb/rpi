@@ -47,4 +47,4 @@ runcmd:
   - 'docker swarm init'
   - 'curl -L https://portainer.io/download/portainer-agent-stack.yml -o portainer-agent-stack.yml'
   - 'docker stack deploy --compose-file=portainer-agent-stack.yml portainer'
-  - 'docker stack deploy --compose-file=/var/rpi/pihole-stack.yml pihole'
+  - 'docker stack deploy --compose-file=/var/rpi/pihole-stack.yml --no-resolve-image pihole'
