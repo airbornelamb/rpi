@@ -1,0 +1,13 @@
+s3.amazonaws.com
+bit.ly
+goo.gl
+apresolve.spotify.com
+spclient.wg.spotify.com
+dl.dropboxusercontent.com
+ns1.dropbox.com
+ns2.dropbox.com
+discovery.syncthing.net
+rollbar.com
+drift.com
+app.drift.com
+rsync.net

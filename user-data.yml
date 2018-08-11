@@ -1,0 +1,48 @@
+#cloud-config
+# vim: syntax=yaml
+#
+
+# Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
+hostname: pi.local
+manage_etc_hosts: true
+# don't write debian.org into apt mirrors
+apt_preserve_sources_list: true
+
+# You could modify this for your own user information
+users:
+  - name: josh
+    primary group: users
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video
+    ssh-import-id: None
+    lock_password: true
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ2sbYMw64qs0RhpbD5vGNklhIRha15EjLQX1fT0TPwOz4dV3kmD5kYkjbYCJezUjmgCdwRD3ikxMDW5YHiosHkIJlbFxat/Wn7xEENXlUoFlHXcW9vMZvUD5gEY64O8OU6/NjsxzK5rzKbqhLsCkdEMEp3iowRDapJV6W+9ezAAE4MuXywlpLu3ghU6O5EM4su85xduLvAmsdprk8QC2danvt+H4KBKG9/PuaKjwpQAyrrr5xlvTpDkc9FmiWLxkuJZm30OeU9HG5+aKe9Iz9Fr8MIEwB4GXmIm0u97IbUblpFJjdSLtVfnq+l4BnmzM9fZd8VYyZv/6nUrg/HSXH
+
+
+
+# Update our packages on first boot, saves us some time
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+# Install any additional packages you need here
+# I add ntp because.. without it, rpi is useless in keeping track of time.
+packages:
+  - ntp
+
+# Set the locale of the system
+locale: "en_US.UTF-8"
+
+# Set the timezone
+# Value of 'timezone' must exist in /usr/share/zoneinfo
+timezone: "America/Detroit"
+
+# These commands will be ran once on first boot only
+runcmd:
+  - 'systemctl restart avahi-daemon'
+  - 'systemctl restart docker'
+  - 'docker swarm init'
+  - 'curl -L https://portainer.io/download/portainer-agent-stack.yml -o portainer-agent-stack.yml'
+  - 'docker stack deploy --compose-file=portainer-agent-stack.yml portainer'
