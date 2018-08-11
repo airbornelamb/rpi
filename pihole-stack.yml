@@ -12,6 +12,8 @@ services:
       - dnsmasq_data:/etc/dnsmasq.d
     environment:
       ServerIP: 192.168.2.2
+      DNS1: 185.228.168.168
+      DNS2: 185.228.169.168
       # jwilder/proxy envs, see readme for more info
       PROXY_LOCATION: pihole
       VIRTUAL_HOST: pihole.local
