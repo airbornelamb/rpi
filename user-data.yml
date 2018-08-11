@@ -19,8 +19,7 @@ users:
     lock_password: true
     ssh-authorized-keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ2sbYMw64qs0RhpbD5vGNklhIRha15EjLQX1fT0TPwOz4dV3kmD5kYkjbYCJezUjmgCdwRD3ikxMDW5YHiosHkIJlbFxat/Wn7xEENXlUoFlHXcW9vMZvUD5gEY64O8OU6/NjsxzK5rzKbqhLsCkdEMEp3iowRDapJV6W+9ezAAE4MuXywlpLu3ghU6O5EM4su85xduLvAmsdprk8QC2danvt+H4KBKG9/PuaKjwpQAyrrr5xlvTpDkc9FmiWLxkuJZm30OeU9HG5+aKe9Iz9Fr8MIEwB4GXmIm0u97IbUblpFJjdSLtVfnq+l4BnmzM9fZd8VYyZv/6nUrg/HSXH
-
-
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsqOxShiA+rMwb29PvIwPamQqCMvB7tw1kV9ipmzLvl6FtWTdOJuiqosO1UWxPM/F7yQLJFkfOxlPgwAKy8XrSbScfotDklIM0pbgQzDHSi2uA47/7I/a/vMNs+nez46+CqI2H6OVPHAzopxYsw8M7ksEQYqsSWgcX2Q3NusRns0WurQp+cES74roQhrl3KyrRGaH7ZfgK2q1ojZBprT37FL2FZ5gXrSmnezyN4TBsl+BmAcKgY2XesrpjwiF9sF4zCXVHRKKpXkN9KTpU5uEpNkc9fNBs/XsQcDXzGVyyFpLO/rLhPG42xoakLakVMQW7GWDYBLEAAQqgWujbH4uh
 
 # Update our packages on first boot, saves us some time
 package_update: true
