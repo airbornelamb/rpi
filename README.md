@@ -31,6 +31,7 @@ If all goes well, the pi will boot up and run cloud-init using user-data.yml. It
 You now have two web admin interfaces:
 
 http://192.168.2.2:9000 is running Portainer. You can browse here and create the first admin user.
+
 http://192.168.2.2/admin is running pi-hole. The DNS forwards to cleanbrowsing.org by default and there is no admin password set.
 
 
