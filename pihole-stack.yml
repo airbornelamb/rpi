@@ -19,8 +19,6 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      restart_policy:
-        - condition: on-failure
 volumes:
   pihole_data:
     driver: local
