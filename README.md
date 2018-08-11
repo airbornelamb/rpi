@@ -4,7 +4,7 @@ This is my repo for testing configurations on my rpi3. So far what this repo wil
 
 ## Usage
 
-**I would suggest forking this repo so you can make changes to any config files. Or you could use mine, but the key is to remember I have set the address to 192.168.2.2 for the pi in multiple config files and you will have to either go with that or change it.**
+**I would suggest forking this repo so you can make changes to any config files. Or you could use mine, but the key is to remember I have set the address to 192.168.2.2 for the pi in multiple config files and you will have to either go with that or change it. I also use DHCP from the router to set this is a reserved lease.**
 
 First you will need to get the amazing Hypriot flash utility:
 ```bash
