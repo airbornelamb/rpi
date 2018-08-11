@@ -1,12 +1,10 @@
 # Raspberry Pi 3
 
-This is my repo for testing configurations on my rpi3. I've learned that everyone calls the rpi3 by different architectures, which is frustrating.
-
-> So far what this repo will do is use cloud-init on top of Hypriot to setup a Docker swarm with Portainer and Pi-Hole. You'll have a swarm and ad-blocking DNS in less than the time it takes to brew a cup of coffee.
+This is my repo for testing configurations on my rpi3. So far what this repo will do is use cloud-init on top of Hypriot to setup a Docker swarm with Portainer and Pi-Hole. You'll have a swarm and ad-blocking DNS in less than the time it takes to brew a cup of coffee.
 
 ## Usage
 
-***I would suggest forking this repo so you can make changes to any config files. Or you could use mine, but the key is to remember I have set the address to 192.168.2.2 for the pi in multiple config files and you will have to either go with that or change it.***
+**I would suggest forking this repo so you can make changes to any config files. Or you could use mine, but the key is to remember I have set the address to 192.168.2.2 for the pi in multiple config files and you will have to either go with that or change it.**
 
 First you will need to get the amazing Hypriot flash utility:
 ```bash
@@ -16,7 +14,7 @@ sudo mv flash /usr/local/bin/flash
 ```
 
 You can then download and edit the user-data.yml of this repo:
-`wget https://raw.githubusercontent.com/airbornelamb/rpi/master/user-data.yml
+`wget https://raw.githubusercontent.com/airbornelamb/rpi/master/user-data.yml`
 
 You'll particularly want to change the username, ssh authorized keys (from cat ~/.ssh/id_rsa.pub) and timezone.
 
