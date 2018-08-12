@@ -4,11 +4,12 @@ services:
     image: "pihole/pihole:v4.0_armhf"
     networks:
       - outside
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "80:80/tcp"
-      - "443:443/tcp"
+    # If using host networking, all exposed ports are already visible
+    #ports:
+    #  - "53:53/tcp"
+    #  - "53:53/udp"
+    #  - "80:80/tcp"
+    #  - "443:443/tcp"
     volumes:
       - pihole_data:/etc/pihole
       - dnsmasq_data:/etc/dnsmasq.d
