@@ -1,7 +1,9 @@
-version: "3"
+version: '3.3'
 services:
   pihole:
-    image: pihole/pihole:v4.0_armhf
+    image: "pihole/pihole:v4.0_armhf"
+    networks:
+      - outside
     ports:
       - "53:53/tcp"
       - "53:53/udp"
@@ -21,6 +23,10 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+networks:
+  outside:
+    external:
+      name: "host"
 volumes:
   pihole_data:
     driver: local
