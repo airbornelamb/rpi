@@ -1,4 +1,16 @@
-version: '3.3'
+version: '3.5'
+
+x-pihole-mount:
+  &pihole-mount
+  type: bind
+  source: /var/rpi/pihole/etc/pihole
+  target: /etc/pihole
+x-dnsmasq-mount:
+  &dnsmasq-mount
+  type: bind
+  source: /var/rpi/pihole/etc/dnsmasq.d
+  target: /etc/dnsmasq.d
+
 services:
   pihole:
     image: "pihole/pihole:v4.0_armhf"
@@ -11,8 +23,13 @@ services:
     #  - "80:80/tcp"
     #  - "443:443/tcp"
     volumes:
-      - pihole_data:/etc/pihole
-      - dnsmasq_data:/etc/dnsmasq.d
+      - *pihole-mount
+      - *dnsmasq-mount
+      #alternative if not using filesystem mounts
+      #will also need to uncomment "volumes" below and remove extensions
+      - pihole_data:
+      - dnsmasq_data:
+      
     environment:
       ServerIP: 192.168.2.2
       DNS1: 185.228.168.168
@@ -29,6 +46,9 @@ networks:
   outside:
     external:
       name: "host"
-volumes:
-  pihole_data:
-  dnsmasq_data:
+# Use instead of filesystem mounts
+#volumes:
+#  pihole_data:
+#  dnsmasq_data:
+  
+
