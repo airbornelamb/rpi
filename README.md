@@ -57,6 +57,8 @@ https://superuser.com/questions/827977/use-cloud-init-with-virtualbox
 
 https://github.com/docker/compose/issues/4675
 
+http://ashbrook.io/2018-04-17-running-pihole-on-a-raspberry-pi-docker-swarm/
+
 Alternatives:
 
 https://github.com/davidferguson/pibakery
