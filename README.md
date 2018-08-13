@@ -55,6 +55,8 @@ https://stackoverflow.com/questions/49950326/how-to-create-docker-volume-with-fi
 
 https://superuser.com/questions/827977/use-cloud-init-with-virtualbox
 
+https://github.com/docker/compose/issues/4675
+
 Alternatives:
 
 https://github.com/davidferguson/pibakery
