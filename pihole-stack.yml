@@ -31,14 +31,4 @@ networks:
       name: "host"
 volumes:
   pihole_data:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /var/rpi/pihole/etc/pihole
   dnsmasq_data:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /var/rpi/pihole/etc/dnsmasq.d
