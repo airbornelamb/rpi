@@ -11,3 +11,8 @@ rollbar.com
 drift.com
 app.drift.com
 rsync.net
+chat.api.drift.com
+conversation.api.drift.com
+live.api.drift.com
+api.elasticemail.com
+cdnjs.cloudflare.com
