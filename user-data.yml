@@ -21,7 +21,7 @@ users:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ2sbYMw64qs0RhpbD5vGNklhIRha15EjLQX1fT0TPwOz4dV3kmD5kYkjbYCJezUjmgCdwRD3ikxMDW5YHiosHkIJlbFxat/Wn7xEENXlUoFlHXcW9vMZvUD5gEY64O8OU6/NjsxzK5rzKbqhLsCkdEMEp3iowRDapJV6W+9ezAAE4MuXywlpLu3ghU6O5EM4su85xduLvAmsdprk8QC2danvt+H4KBKG9/PuaKjwpQAyrrr5xlvTpDkc9FmiWLxkuJZm30OeU9HG5+aKe9Iz9Fr8MIEwB4GXmIm0u97IbUblpFJjdSLtVfnq+l4BnmzM9fZd8VYyZv/6nUrg/HSXH
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsqOxShiA+rMwb29PvIwPamQqCMvB7tw1kV9ipmzLvl6FtWTdOJuiqosO1UWxPM/F7yQLJFkfOxlPgwAKy8XrSbScfotDklIM0pbgQzDHSi2uA47/7I/a/vMNs+nez46+CqI2H6OVPHAzopxYsw8M7ksEQYqsSWgcX2Q3NusRns0WurQp+cES74roQhrl3KyrRGaH7ZfgK2q1ojZBprT37FL2FZ5gXrSmnezyN4TBsl+BmAcKgY2XesrpjwiF9sF4zCXVHRKKpXkN9KTpU5uEpNkc9fNBs/XsQcDXzGVyyFpLO/rLhPG42xoakLakVMQW7GWDYBLEAAQqgWujbH4uh
 
-# Static IP address
+# Static IP address and minio
 write_files:
   - content: |
       persistent
@@ -36,6 +36,21 @@ write_files:
       static domain_name_servers=127.0.0.1 8.8.8.8
 
     path: /etc/dhcpcd.conf
+  - content: |
+      libstorage:
+        service: s3fs
+      s3fs:
+        accessKey: Q3AM3UQ867SPQQA43P2F
+        secretKey: zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
+        endpoint: https://play.minio.io:9000  
+        region: us-east-1
+        disablePathStyle: false 
+        options:
+        - url=https://play.minio.io:9000
+        - use_path_request_style
+        - nonempty
+
+    path: /etc/rexray/config.yml
 
 # Update our packages on first boot, saves us some time
 package_update: true
@@ -46,6 +61,7 @@ package_reboot_if_required: true
 # I add ntp because.. without it, rpi is useless in keeping track of time.
 packages:
   - ntp
+  - s3fs
 
 # Set the locale of the system
 locale: "en_US.UTF-8"
@@ -57,9 +73,13 @@ timezone: "America/Detroit"
 # These commands will be ran once on first boot only
 runcmd:
   - 'systemctl restart avahi-daemon'
+  - 'curl -sSL https://dl.bintray.com/emccode/rexray/install | sh'
+  - 'sudo rexray service enable'
+  - 'sudo rexray service start'
   - 'systemctl restart docker'
   - 'git clone --depth 1 https://github.com/airbornelamb/rpi.git /var/rpi'
   - 'docker swarm init'
   - 'curl -L https://portainer.io/download/portainer-agent-stack.yml -o portainer-agent-stack.yml'
   - 'docker stack deploy --compose-file=portainer-agent-stack.yml portainer'
   - 'docker stack deploy --compose-file=/var/rpi/pihole-stack.yml --resolve-image=never pihole'
+
