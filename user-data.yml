@@ -74,8 +74,8 @@ timezone: "America/Detroit"
 runcmd:
   - 'systemctl restart avahi-daemon'
   - 'curl -sSL https://dl.bintray.com/emccode/rexray/install | sh'
-  - 'sudo rexray service enable'
-  - 'sudo rexray service start'
+  - 'sudo systemctl enable rexray'
+  - 'sudo systemctl start rexray' 
   - 'systemctl restart docker'
   - 'git clone --depth 1 https://github.com/airbornelamb/rpi.git /var/rpi'
   - 'docker swarm init'
