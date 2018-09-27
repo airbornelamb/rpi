@@ -73,7 +73,7 @@ timezone: "America/Detroit"
 # These commands will be ran once on first boot only
 runcmd:
   - 'systemctl restart avahi-daemon'
-  - 'curl -sSL https://dl.bintray.com/emccode/rexray/install | sh'
+  - 'curl -sSL https://dl.bintray.com/rexray/rexray/install | sh -s stable'
   - 'sudo systemctl enable rexray'
   - 'sudo systemctl start rexray' 
   - 'systemctl restart docker'
