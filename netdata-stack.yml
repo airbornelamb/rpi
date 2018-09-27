@@ -1,7 +1,7 @@
 version: '3'
 services:
   netdata:
-    image: netdata/netdata
+    image: netdata/netdata:armhf
     hostname: pi.local
     ports:
       - 19999:19999
