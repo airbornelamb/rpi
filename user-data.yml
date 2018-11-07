@@ -36,21 +36,6 @@ write_files:
       static domain_name_servers=127.0.0.1 8.8.8.8
 
     path: /etc/dhcpcd.conf
-  - content: |
-      libstorage:
-        service: s3fs
-      s3fs:
-        accessKey: Q3AM3UQ867SPQQA43P2F
-        secretKey: zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
-        endpoint: https://play.minio.io:9000  
-        region: us-east-1
-        disablePathStyle: false 
-        options:
-        - url=https://play.minio.io:9000
-        - use_path_request_style
-        - nonempty
-
-    path: /etc/rexray/config.yml
 
 # Update our packages on first boot, saves us some time
 package_update: true
@@ -61,25 +46,22 @@ package_reboot_if_required: true
 # I add ntp because.. without it, rpi is useless in keeping track of time.
 packages:
   - ntp
-  - s3fs
 
 # Set the locale of the system
 locale: "en_US.UTF-8"
 
 # Set the timezone
 # Value of 'timezone' must exist in /usr/share/zoneinfo
-timezone: "America/Detroit"
+timezone: "America/New_York"
 
 # These commands will be ran once on first boot only
 runcmd:
   - 'systemctl restart avahi-daemon'
-  - 'curl -sSL https://dl.bintray.com/rexray/rexray/install | sh -s stable'
-  - 'sudo systemctl enable rexray'
-  - 'sudo systemctl start rexray' 
   - 'systemctl restart docker'
   - 'git clone --depth 1 https://github.com/airbornelamb/rpi.git /var/rpi'
   - 'docker swarm init'
   - 'curl -L https://portainer.io/download/portainer-agent-stack.yml -o portainer-agent-stack.yml'
   - 'docker stack deploy --compose-file=portainer-agent-stack.yml portainer'
-  - 'docker stack deploy --compose-file=/var/rpi/pihole-stack.yml --resolve-image=never pihole'
+  #- 'docker stack deploy --compose-file=/var/rpi/pihole-stack.yml --resolve-image=never pihole'
+  #- 'mc config host add minio http://192.168.1.51 BKIKJAA5BMMU2RHO6IBB V7f1CwQqAcwo80UEIJEjc5gVQUSSx5ohQ9GSrr12'
 
